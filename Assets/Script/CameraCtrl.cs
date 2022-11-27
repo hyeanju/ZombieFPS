@@ -6,7 +6,7 @@ public class CameraCtrl : MonoBehaviour
 {
     private float rotSpeed = 5f;
 
-    private float MinX = -80f;
+    private float MinX = -50f;
     private float MaxX = 50;
     private float rotX = 0f;
     private float rotY = 0f;

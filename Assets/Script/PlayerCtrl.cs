@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    public Camera main;
-
-    private float h = 0.0f;
-    private float v = 0.0f;
-    private Transform tr;
-    public float moveSpeed = 10f;
     private CameraCtrl cameractrl;
+    private PlayerMove move;
+
     float mousex = 0f;
     float mousey = 0f;
+    float h = 0;
+    float v = 0;
+
 
     private void Awake()
     {
@@ -20,28 +19,14 @@ public class PlayerCtrl : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         cameractrl = GetComponent<CameraCtrl>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        tr = GetComponent<Transform>();
+        move = GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
         UpdateRotate();
-    }
-
-    void PlayerMove()
-    {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
-
-        Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
-        tr.Translate(moveDir * moveSpeed * Time.deltaTime, Space.Self);
+        UpdateMove();
     }
 
     void UpdateRotate()
@@ -50,5 +35,13 @@ public class PlayerCtrl : MonoBehaviour
         mousey = Input.GetAxis("MouseY");
 
         cameractrl.UpdateRotate(mousex, mousey);
+    }
+
+    void UpdateMove()
+    {
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+
+        
     }
 }
