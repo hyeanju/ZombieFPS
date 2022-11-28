@@ -11,6 +11,9 @@ public class FireCtrl : MonoBehaviour
     public AudioClip fireSfx;
     private AudioSource source = null;
 
+    public float cooltime = 5f;
+    private float timer = 0;
+
     private void Start()
     {
         source = GetComponent<AudioSource>();
@@ -20,20 +23,25 @@ public class FireCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        timer += Time.deltaTime;
+        if (timer >= cooltime)
         {
-            Fire();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Fire();
+            }
+            timer = 0;
         }
     }
 
     void Fire()
     {
         CreateBullet();
-        source.PlayOneShot(fireSfx, 0.9f);
     }
 
     void CreateBullet()
     {
         Instantiate(bullet, firePos.position, firePos.rotation);
+        source.PlayOneShot(fireSfx, 0.9f);
     }
 }

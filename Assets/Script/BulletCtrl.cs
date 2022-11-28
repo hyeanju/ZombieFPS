@@ -11,11 +11,17 @@ public class BulletCtrl : MonoBehaviour
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+
+        Invoke("DestroyBullet", 5);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
     }
 }
