@@ -14,6 +14,8 @@ public class FireCtrl : MonoBehaviour
     public float cooltime = 5f;
     private float timer = 0;
 
+    public int bulletcnt = 9;
+
     private void Start()
     {
         source = GetComponent<AudioSource>();
@@ -24,13 +26,25 @@ public class FireCtrl : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= cooltime)
+
+        if (bulletcnt > 0)
         {
-            if (Input.GetMouseButtonDown(0))
+            //발사 쿨타임
+            if (timer >= cooltime)
             {
-                Fire();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Fire();
+                    timer = 0;
+
+                    bulletcnt--;
+                }
             }
-            timer = 0;
+        }
+        //재장전
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            bulletcnt = 9;
         }
     }
 
