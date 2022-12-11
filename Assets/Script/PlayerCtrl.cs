@@ -15,9 +15,6 @@ public class PlayerCtrl : MonoBehaviour
     public float gravity = 150.0f;
 
     public int hp = 100;
-    public float attackTime = 0.5f;
-    private float timer;
-
     private int initHp;
     public Image imgHpbar;
 
@@ -28,6 +25,7 @@ public class PlayerCtrl : MonoBehaviour
 
     void Start()
     {
+        initHp = hp;
         characterController = GetComponent<CharacterController>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -61,25 +59,7 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider coll)
-    {
-        if (coll.gameObject.tag == "Monster")
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= attackTime)
-            {
-                PlayerAttacted();
-            }
-
-            if (hp <= 0)
-            {
-                PlayerDie();
-            }
-        }
-    }
-
-    private void PlayerAttacted()
+    public void PlayerAttacted()
     {
         hp -= 10;
         imgHpbar.fillAmount = (float)hp / (float)initHp;
@@ -87,7 +67,7 @@ public class PlayerCtrl : MonoBehaviour
         Debug.Log("Player HP = " + hp.ToString());
     }
 
-    void PlayerDie()
+    public void PlayerDie()
     {
         Debug.Log("Player Die!!");
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
@@ -99,4 +79,5 @@ public class PlayerCtrl : MonoBehaviour
 
         // SceneManager.LoadScene("scMain");
     }
+
 }

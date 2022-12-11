@@ -14,10 +14,13 @@ public class MonsterCtrl : MonoBehaviour
     private Animator animator;
 
     public float traceDist = 10.0f;
-    public float attackDist = 2.0f;
+    public float attackDist = 3.0f;
     private bool isDie = false;
 
     private int hp = 100;
+    private float attackTime = 1.0f;
+    private float timer;
+    private PlayerCtrl playerCtrl;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,7 @@ public class MonsterCtrl : MonoBehaviour
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
         nvAgent = this.gameObject.GetComponent<NavMeshAgent>();
         animator = this.gameObject.GetComponent<Animator>();
+        playerCtrl = GameObject.FindWithTag("Player").GetComponent<PlayerCtrl>();
 
         StartCoroutine(this.CheckMonsterState());
         StartCoroutine(this.MonsterAction());
@@ -35,6 +39,7 @@ public class MonsterCtrl : MonoBehaviour
     void Update()
     {
         nvAgent.destination = playerTr.position;
+        timer += Time.deltaTime;
     }
 
     IEnumerator CheckMonsterState()
@@ -78,6 +83,16 @@ public class MonsterCtrl : MonoBehaviour
                 case MonsterState.attack:
                     nvAgent.isStopped = true;
                     animator.SetBool("IsAttack", true);
+                    if (timer >= attackTime)
+                    {
+                        playerCtrl.PlayerAttacted();
+                        timer = 0;
+                    }
+                    if (playerCtrl.hp <= 0)
+                    {
+                        playerCtrl.PlayerDie();
+                        OnPlayerDie();
+                    }
                     break;
             }
             yield return null;
