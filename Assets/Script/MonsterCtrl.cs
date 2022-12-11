@@ -106,7 +106,6 @@ public class MonsterCtrl : MonoBehaviour
     {
         StopAllCoroutines();
         nvAgent.isStopped = true;
-        animator.SetTrigger("IsPlayerDie");
     }
 
     void MonsterDie()
@@ -124,7 +123,5 @@ public class MonsterCtrl : MonoBehaviour
         {
             coll.enabled = false;
         }
-
-        // gameUI.DispScore(50);
     }
 }
