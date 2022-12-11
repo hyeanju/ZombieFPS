@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public Text textbullet;
-    private int bulletcnt = 9;
+    private int bulletcnt = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,6 @@ public class GameUI : MonoBehaviour
     public void DispBullet(int cnt)
     {
         bulletcnt -= cnt;
-        textbullet.text = "9 / " + bulletcnt.ToString();
+        textbullet.text = "7 / " + bulletcnt.ToString();
     }
 }

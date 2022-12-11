@@ -25,7 +25,7 @@ public class FireCtrl : MonoBehaviour
     public float Reloadcooltime = 3f;
 
     public bool isreload = false;
-    public int bulletcnt = 9;
+    public int bulletcnt = 7;
 
     private GameUI gameUI;
     private ArmAnimCtrl Armanim;
@@ -109,8 +109,8 @@ public class FireCtrl : MonoBehaviour
             if (timer >= Reloadcooltime)
             {
                 timer = 0;
-                bulletcnt = 9;
-                gameUI.DispBullet(-9);
+                bulletcnt = 7;
+                gameUI.DispBullet(-7);
                 isreload = false;
             }
         }
