@@ -13,6 +13,7 @@ public class BulletCtrl : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(transform.forward * speed);
 
         Invoke("DestroyBullet", 5);
+
     }
 
     // Update is called once per frame
@@ -23,5 +24,10 @@ public class BulletCtrl : MonoBehaviour
     void DestroyBullet()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        DestroyBullet();
     }
 }
