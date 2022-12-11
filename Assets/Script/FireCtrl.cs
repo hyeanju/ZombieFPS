@@ -16,9 +16,13 @@ public class FireCtrl : MonoBehaviour
 
     public int bulletcnt = 9;
 
+    private GameUI gameUI;
+
     private void Start()
     {
         source = GetComponent<AudioSource>();
+
+        gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
     }
 
 
@@ -38,13 +42,24 @@ public class FireCtrl : MonoBehaviour
                     timer = 0;
 
                     bulletcnt--;
+                    gameUI.DispBullet(1);
                 }
             }
         }
         //재장전
-        if (Input.GetKeyDown(KeyCode.R))
+        if (bulletcnt == 0)
         {
-            bulletcnt = 9;
+            //장전 쿨타임
+            if (timer >= cooltime)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    timer = 0;
+
+                    bulletcnt = 9;
+                    gameUI.DispBullet(-9);
+                }
+            }
         }
     }
 
