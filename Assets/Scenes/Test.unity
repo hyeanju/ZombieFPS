@@ -537,7 +537,7 @@ MonoBehaviour:
   monsterState: 0
   traceDist: 10
   attackDist: 2
---- !u!136 &1017730246
+--- !u!136 &1017730249
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -548,9 +548,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3
+  m_Height: 3.2
   m_Direction: 1
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!4 &1026850535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
@@ -599,7 +599,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1105105125
 GameObject:
@@ -1077,9 +1077,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3
+  m_Height: 4
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!114 &1380727396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1099,8 @@ MonoBehaviour:
   lookXLimit: 60
   gravity: 150
   hp: 0
+  attackTime: 0.5
+  imgHpbar: {fileID: 1107523614}
 --- !u!143 &1380727397
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1284,9 +1286,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100102, guid: abfe6fc5a9b390a488839c1fc3b58dcd, type: 3}
+      propertyPath: m_TagString
+      value: Attack
+      objectReference: {fileID: 0}
     - target: {fileID: 100170, guid: abfe6fc5a9b390a488839c1fc3b58dcd, type: 3}
       propertyPath: m_Name
       value: ZombieRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 100170, guid: abfe6fc5a9b390a488839c1fc3b58dcd, type: 3}
+      propertyPath: m_TagString
+      value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 400170, guid: abfe6fc5a9b390a488839c1fc3b58dcd, type: 3}
       propertyPath: m_RootOrder
