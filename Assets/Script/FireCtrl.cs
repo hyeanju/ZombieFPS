@@ -20,7 +20,9 @@ public class FireCtrl : MonoBehaviour
     private AudioSource source = null;
 
     public float cooltime = 1f;
-    private float timer = 0;
+    private float timer = 0f;
+
+    public float Reloadcooltime = 1.5f;
 
     public bool isreload = false;
     public int bulletcnt = 9;
@@ -50,23 +52,19 @@ public class FireCtrl : MonoBehaviour
         if (bulletcnt == 0)
         {
             reload();
-            isreload = false;
         }
 
-        if (isreload == false)
-        {
             //¹ß»ç ÄðÅ¸ÀÓ
-            if (timer >= cooltime)
+        if (timer >= cooltime)
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    fire();
+                fire();
                     
-                    timer = 0;
-                    _animation.CrossFade(anim.M1911_Fire_.name, 0.5f);
-                    bulletcnt--;
-                    gameUI.DispBullet(1);
-                }
+                timer = 0;
+                _animation.CrossFade(anim.M1911_Fire_.name, 0.5f);
+                bulletcnt--;
+                gameUI.DispBullet(1);
             }
         }
     }
@@ -92,7 +90,7 @@ public class FireCtrl : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                isreload = true;
+                
                 _animation.CrossFade(anim.M1911_Reload_.name, 0.5f);
 
                 timer = 0;
