@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d262da7f9059e76479ee74272bccbed8, type: 3}
       propertyPath: m_Name
-      value: FP_M1911
+      value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: d262da7f9059e76479ee74272bccbed8, type: 3}
       propertyPath: m_Controller
@@ -501,8 +501,44 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9a006e167a1c2dd478e2a36e30959a45, type: 2}
     - target: {fileID: 919132149155446097, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
       propertyPath: m_Name
-      value: FP_Arms_M1911
+      value: PlayerArm
       objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 3507851324895048220, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: -6627150853499084884, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[2]
+      value: 
+      objectReference: {fileID: -1539379549936337691, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[3]
+      value: 
+      objectReference: {fileID: 447047525531231832, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[4]
+      value: 
+      objectReference: {fileID: 447047525531231832, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[5]
+      value: 
+      objectReference: {fileID: 447047525531231832, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[6]
+      value: 
+      objectReference: {fileID: 447047525531231832, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    - target: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+      propertyPath: m_Animations.Array.data[7]
+      value: 
+      objectReference: {fileID: 447047525531231832, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
     - target: {fileID: 5021843314113664036, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -575,27 +611,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
   m_PrefabInstance: {fileID: 723152356}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1026850536
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!111 &1026850538 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 2223639932434330405, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+  m_PrefabInstance: {fileID: 723152356}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 627008370}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 37211561e0a13c344b031b92fcdc9287, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1026850537
+--- !u!114 &1026850539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,9 +625,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 627008370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ca42a1ee6035cd4f80d2a266ac5d216, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e3a21edcf4886f4db5c750526b8fdf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arm_anim:
+    Arm_M1911_Idle_: {fileID: -6627150853499084884, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    Arm_M1911_Fire_: {fileID: -1539379549936337691, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+    Arm_M1911_Reload_: {fileID: 3507851324895048220, guid: e4c88ba23e281994f8a58105df3fe342, type: 3}
+  Arm_animation: {fileID: 1026850538}
 --- !u!1 &1088852602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1175,8 @@ MonoBehaviour:
   lookXLimit: 60
   gravity: 150
   hp: 0
+  attackTime: 0.5
+  imgHpbar: {fileID: 0}
 --- !u!143 &1380727397
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1578,7 +1606,7 @@ MonoBehaviour:
   firePos: {fileID: 1436889962}
   fireSfx: {fileID: 0}
   cooltime: 1
-  Reloadcooltime: 1.5
+  Reloadcooltime: 3
   isreload: 0
   bulletcnt: 9
   anim:

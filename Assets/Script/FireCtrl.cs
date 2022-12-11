@@ -22,12 +22,13 @@ public class FireCtrl : MonoBehaviour
     public float cooltime = 1f;
     private float timer = 0f;
 
-    public float Reloadcooltime = 1.5f;
+    public float Reloadcooltime = 3f;
 
     public bool isreload = false;
     public int bulletcnt = 9;
 
     private GameUI gameUI;
+    private ArmAnimCtrl Armanim;
 
     public Anim anim;
     public Animation _animation;
@@ -37,6 +38,7 @@ public class FireCtrl : MonoBehaviour
         source = GetComponent<AudioSource>();
 
         gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
+        Armanim = GameObject.Find("PlayerArm").GetComponent<ArmAnimCtrl>();
 
         _animation = GetComponentInChildren<Animation>();
         _animation.clip = anim.M1911_Idle_;
@@ -54,19 +56,29 @@ public class FireCtrl : MonoBehaviour
             reload();
         }
 
-            //발사 쿨타임
-        if (timer >= cooltime)
+        if(isreload == false)
         {
-            if (Input.GetMouseButtonDown(0))
+            //발사 쿨타임
+            if (timer >= cooltime)
             {
-                fire();
-                    
-                timer = 0;
-                _animation.CrossFade(anim.M1911_Fire_.name, 0.5f);
-                bulletcnt--;
-                gameUI.DispBullet(1);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    fire();
+
+                    timer = 0;
+                    Armanim.Arm_fire();
+                    _animation.CrossFade(anim.M1911_Fire_.name, 0.5f);
+                    bulletcnt--;
+                    gameUI.DispBullet(1);
+                }
+                else
+                {
+                    Armanim.Arm_idle();
+                    _animation.CrossFade(anim.M1911_Idle_.name, 0.5f);
+                }
             }
         }
+
     }
 
     //발사
@@ -90,12 +102,16 @@ public class FireCtrl : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                
+                isreload = true;
+                Armanim.Arm_reload();
                 _animation.CrossFade(anim.M1911_Reload_.name, 0.5f);
-
+            }
+            if (timer >= Reloadcooltime)
+            {
                 timer = 0;
                 bulletcnt = 9;
                 gameUI.DispBullet(-9);
+                isreload = false;
             }
         }
     }
