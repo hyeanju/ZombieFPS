@@ -38,6 +38,8 @@ public class FireCtrl : MonoBehaviour
     public Anim anim;
     public Animation _animation;
 
+    public GameObject fireEffect;
+
     private void Start()
     {
         Firesource = GetComponent<AudioSource>();
@@ -68,6 +70,7 @@ public class FireCtrl : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     fire();
+                    ShutEffect();
 
                     timer = 0;
                     Armanim.Arm_fire();
@@ -96,6 +99,11 @@ public class FireCtrl : MonoBehaviour
     {
         Instantiate(bullet, firePos.position, firePos.rotation);
         Firesource.PlayOneShot(FireSound, 0.9f);
+    }
+
+    void ShutEffect()
+    {
+        GameObject Shut = Instantiate(fireEffect, this.transform.Find("Firepos").position, Quaternion.identity);
     }
 
     //¿Á¿Â¿¸

@@ -19,6 +19,7 @@ public class PlayerCtrl : MonoBehaviour
     public int hp = 100;
     private int initHp;
     public Image imgHpbar;
+    public GameObject damageImage;
 
     //¼Ò¸®
     public bool soundnum = true;
@@ -47,6 +48,7 @@ public class PlayerCtrl : MonoBehaviour
         Cursor.visible = false;
 
         Playersource = GetComponent<AudioSource>();
+        damageImage.SetActive(false);
     }
 
     void Update()
@@ -93,10 +95,17 @@ public class PlayerCtrl : MonoBehaviour
     {
         hp -= 10;
         imgHpbar.fillAmount = (float)hp / (float)initHp;
+        damageImage.SetActive(true);
         Playersource.clip = HurtSound[Random.Range(0, HurtSound.Length)];
         Playersource.Play();
 
         Debug.Log("Player HP = " + hp.ToString());
+        Invoke("DamageImgDisable", 1);
+    }
+
+    public void DamageImgDisable()
+    {
+        damageImage.SetActive(false);
     }
 
     public void PlayerDie()
