@@ -46,7 +46,6 @@ public class FireCtrl : MonoBehaviour
         _animation.Play();
     }
 
-
     // Update is called once per frame
     void Update()
     {

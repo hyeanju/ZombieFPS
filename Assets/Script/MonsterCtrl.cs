@@ -122,7 +122,7 @@ public class MonsterCtrl : MonoBehaviour
         nvAgent.isStopped = true;
     }
 
-    void MonsterDie()
+    public void MonsterDie()
     {
         StopAllCoroutines();
 
