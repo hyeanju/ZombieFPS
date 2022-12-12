@@ -112,13 +112,17 @@ public class PlayerCtrl : MonoBehaviour
     {
         Debug.Log("Player Die!!");
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        GameObject[] Manager = GameObject.FindGameObjectsWithTag("GameManager");
 
         foreach (GameObject monster in monsters)
         {
             monster.SendMessage("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
         }
 
-        // SceneManager.LoadScene("scMain");
+        foreach (GameObject manager in Manager)
+        {
+            manager.SendMessage("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     public void sound()

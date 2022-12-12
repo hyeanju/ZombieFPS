@@ -21,6 +21,7 @@ public class MonsterCtrl : MonoBehaviour
     private float attackTime = 1.0f;
     private float timer;
     private PlayerCtrl playerCtrl;
+    private FireCtrl firectrl;
 
     //¿Àµð¿À
     public AudioClip[] Attack = new AudioClip[4];
@@ -42,6 +43,7 @@ public class MonsterCtrl : MonoBehaviour
         nvAgent = this.gameObject.GetComponent<NavMeshAgent>();
         animator = this.gameObject.GetComponent<Animator>();
         playerCtrl = GameObject.FindWithTag("Player").GetComponent<PlayerCtrl>();
+        firectrl = GameObject.FindWithTag("Gun").GetComponent<FireCtrl>();
         Monstersource = GetComponent<AudioSource>();
 
         StartCoroutine(this.CheckMonsterState());
@@ -140,6 +142,8 @@ public class MonsterCtrl : MonoBehaviour
     {
         StopAllCoroutines();
         nvAgent.isStopped = true;
+        playerCtrl.enabled = false;
+        firectrl.enabled = false;
     }
 
     public void MonsterDie()
