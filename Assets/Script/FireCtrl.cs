@@ -17,6 +17,8 @@ public class FireCtrl : MonoBehaviour
     public Transform firePos;
 
     public AudioClip fireSfx;
+    public AudioClip catridgeload;
+    public AudioClip reloading;
     private AudioSource source = null;
 
     public float cooltime = 1f;
@@ -105,6 +107,8 @@ public class FireCtrl : MonoBehaviour
                 isreload = true;
                 Armanim.Arm_reload();
                 _animation.CrossFade(anim.M1911_Reload_.name, 0.5f);
+                source.PlayOneShot(catridgeload, 0.3f);
+                source.PlayOneShot(reloading, 0.3f);
             }
             if (timer >= Reloadcooltime)
             {
