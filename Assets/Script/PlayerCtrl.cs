@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerCtrl : MonoBehaviour
 {
+    //이동
     public Camera playerCamera;
     public float walkSpeed = 1.15f;
     public float runSpeed = 4.0f;
@@ -14,10 +15,12 @@ public class PlayerCtrl : MonoBehaviour
     public float lookXLimit = 60.0f;
     public float gravity = 150.0f;
 
+    //체력
     public int hp = 100;
     private int initHp;
     public Image imgHpbar;
 
+    //소리
     public bool soundnum = true;
     public AudioClip WalkSound;
     public AudioClip WalkSound2;
@@ -26,6 +29,7 @@ public class PlayerCtrl : MonoBehaviour
     public AudioClip[] HurtSound = new AudioClip[4];
     private AudioSource Playersource = null;
 
+    //소리재생 쿨타임
     private float Ptimer = 0f;
     private float Pcooltime = 1f;
 

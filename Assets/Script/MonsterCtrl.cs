@@ -22,14 +22,27 @@ public class MonsterCtrl : MonoBehaviour
     private float timer;
     private PlayerCtrl playerCtrl;
 
+    //¿Àµð¿À
+    public AudioClip[] Attack = new AudioClip[4];
+    public AudioClip[] Idle = new AudioClip[4];
+    public AudioClip[] Trace = new AudioClip[4];
+    public AudioClip[] Die = new AudioClip[3];
+
+    private AudioSource Monstersource = null;
+
+    private float SndTimer;
+    private float Sndcooltime = 2.5f;
+
     // Start is called before the first frame update
     void Start()
     {
+        IdleSound();
         monsterTr = this.gameObject.GetComponent<Transform>();
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
         nvAgent = this.gameObject.GetComponent<NavMeshAgent>();
         animator = this.gameObject.GetComponent<Animator>();
         playerCtrl = GameObject.FindWithTag("Player").GetComponent<PlayerCtrl>();
+        Monstersource = GetComponent<AudioSource>();
 
         StartCoroutine(this.CheckMonsterState());
         StartCoroutine(this.MonsterAction());
@@ -40,6 +53,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         nvAgent.destination = playerTr.position;
         timer += Time.deltaTime;
+        SndTimer += Time.deltaTime;
     }
 
     IEnumerator CheckMonsterState()
@@ -52,14 +66,20 @@ public class MonsterCtrl : MonoBehaviour
             if (dist <= attackDist)
             {
                 monsterState = MonsterState.attack;
+                Sndcooltime = 1.0f;
+                AttackSound();
             }
             else if (dist <= traceDist)
             {
+                Sndcooltime = 1.5f;
                 monsterState = MonsterState.trace;
+                TraceSound();
             }
             else
             {
+                Sndcooltime = 2.0f;
                 monsterState = MonsterState.idle;
+                IdleSound();
             }
         }
     }
@@ -130,6 +150,7 @@ public class MonsterCtrl : MonoBehaviour
         monsterState = MonsterState.die;
         nvAgent.isStopped = true;
         animator.SetTrigger("IsDie");
+        DieSound();
 
         gameObject.GetComponentInChildren<CapsuleCollider>().enabled = false;
 
@@ -137,5 +158,44 @@ public class MonsterCtrl : MonoBehaviour
         {
             coll.enabled = false;
         }
+    }
+
+    public void IdleSound()
+    {
+        if (SndTimer >= Sndcooltime)
+        { 
+            Monstersource.clip = Idle[Random.Range(0, Idle.Length)];
+            Monstersource.Play();
+
+            SndTimer = 0;
+        }
+    }
+
+    public void AttackSound()
+    {
+        if (SndTimer >= Sndcooltime)
+        {
+            Monstersource.clip = Trace[Random.Range(0, Trace.Length)];
+            Monstersource.Play();
+
+            SndTimer = 0;
+        }
+    }
+
+    public void TraceSound()
+    {
+        if (SndTimer >= Sndcooltime)
+        {
+            Monstersource.clip = Attack[Random.Range(0, Attack.Length)];
+            Monstersource.Play();
+
+            SndTimer = 0;
+        }
+    }
+
+    public void DieSound()
+    {
+        Monstersource.clip = Die[Random.Range(0, Die.Length)];
+        Monstersource.PlayOneShot(Monstersource.clip);
     }
 }

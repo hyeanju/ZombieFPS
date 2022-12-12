@@ -13,19 +13,23 @@ public class Anim
 [RequireComponent(typeof(AudioSource))]
 public class FireCtrl : MonoBehaviour
 {
+    //기본
     public GameObject bullet;
     public Transform firePos;
 
+    //오디오
     public AudioClip FireSound;
     public AudioClip CatridgeSound;
     public AudioClip ReloadSound;
     private AudioSource Firesource = null;
 
+    //쿨타임
     public float cooltime = 1f;
     public float Reloadcooltime = 3f;
     private float timer = 0f;
     public int bulletcnt = 7;
 
+    //리로드중인가
     public bool isreload = false;
 
     private GameUI gameUI;
