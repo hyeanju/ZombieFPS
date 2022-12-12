@@ -17,7 +17,7 @@ public class MonsterCtrl : MonoBehaviour
     public float attackDist = 3.0f;
     private bool isDie = false;
 
-    private int hp = 100;
+    public int hp = 100;
     private float attackTime = 1.0f;
     private float timer;
     private PlayerCtrl playerCtrl;
@@ -103,7 +103,6 @@ public class MonsterCtrl : MonoBehaviour
     {
         if (coll.gameObject.tag == "Bullet")
         {
-            Destroy(coll.gameObject);
             hp -= coll.gameObject.GetComponent<BulletCtrl>().damage;
 
             if (hp <= 0)
