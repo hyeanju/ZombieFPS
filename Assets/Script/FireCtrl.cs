@@ -16,18 +16,17 @@ public class FireCtrl : MonoBehaviour
     public GameObject bullet;
     public Transform firePos;
 
-    public AudioClip fireSfx;
-    public AudioClip catridgeload;
-    public AudioClip reloading;
-    private AudioSource source = null;
+    public AudioClip FireSound;
+    public AudioClip CatridgeSound;
+    public AudioClip ReloadSound;
+    private AudioSource Firesource = null;
 
     public float cooltime = 1f;
-    private float timer = 0f;
-
     public float Reloadcooltime = 3f;
+    private float timer = 0f;
+    public int bulletcnt = 7;
 
     public bool isreload = false;
-    public int bulletcnt = 7;
 
     private GameUI gameUI;
     private ArmAnimCtrl Armanim;
@@ -37,7 +36,7 @@ public class FireCtrl : MonoBehaviour
 
     private void Start()
     {
-        source = GetComponent<AudioSource>();
+        Firesource = GetComponent<AudioSource>();
 
         gameUI = GameObject.Find("GameUI").GetComponent<GameUI>();
         Armanim = GameObject.Find("PlayerArm").GetComponent<ArmAnimCtrl>();
@@ -93,7 +92,7 @@ public class FireCtrl : MonoBehaviour
     void CreateBullet()
     {
         Instantiate(bullet, firePos.position, firePos.rotation);
-        source.PlayOneShot(fireSfx, 0.9f);
+        Firesource.PlayOneShot(FireSound, 0.9f);
     }
 
     //ÀçÀåÀü
@@ -106,7 +105,7 @@ public class FireCtrl : MonoBehaviour
             {
                 if(isreload == false)
                 {
-                    source.PlayOneShot(catridgeload, 0.9f);
+                    Firesource.PlayOneShot(CatridgeSound, 0.9f);
                 }
                 isreload = true;
                 Armanim.Arm_reload();
@@ -117,7 +116,7 @@ public class FireCtrl : MonoBehaviour
             {
                 if (timer >= Reloadcooltime)
                 {
-                    source.PlayOneShot(reloading, 0.9f);
+                    Firesource.PlayOneShot(ReloadSound, 0.9f);
                     timer = 0;
                     bulletcnt = 7;
                     gameUI.DispBullet(-7);
