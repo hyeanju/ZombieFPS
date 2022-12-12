@@ -104,18 +104,25 @@ public class FireCtrl : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if(isreload == false)
+                {
+                    source.PlayOneShot(catridgeload, 0.9f);
+                }
                 isreload = true;
                 Armanim.Arm_reload();
                 _animation.CrossFade(anim.M1911_Reload_.name, 0.5f);
-                source.PlayOneShot(catridgeload, 0.3f);
-                source.PlayOneShot(reloading, 0.3f);
+                
             }
-            if (timer >= Reloadcooltime)
+            if(isreload==true)
             {
-                timer = 0;
-                bulletcnt = 7;
-                gameUI.DispBullet(-7);
-                isreload = false;
+                if (timer >= Reloadcooltime)
+                {
+                    source.PlayOneShot(reloading, 0.9f);
+                    timer = 0;
+                    bulletcnt = 7;
+                    gameUI.DispBullet(-7);
+                    isreload = false;
+                }
             }
         }
     }
