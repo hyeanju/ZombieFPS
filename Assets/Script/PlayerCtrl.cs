@@ -39,6 +39,8 @@ public class PlayerCtrl : MonoBehaviour
     float rotationX = 0;
     private bool canMove = true;
 
+    public GameObject goal;
+
     void Start()
     {
         initHp = hp;
@@ -122,6 +124,27 @@ public class PlayerCtrl : MonoBehaviour
         foreach (GameObject manager in Manager)
         {
             manager.SendMessage("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Destination")
+        {
+            goal.SetActive(true);
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Debug.Log("스페이스 입력");
+                SceneManager.LoadScene("Win");
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Destination")
+        {
+            goal.SetActive(false);
         }
     }
 

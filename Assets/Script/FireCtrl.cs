@@ -104,6 +104,7 @@ public class FireCtrl : MonoBehaviour
     void ShutEffect()
     {
         GameObject Shut = Instantiate(fireEffect, this.transform.Find("Firepos").position, Quaternion.identity);
+        Destroy(Shut, 3);
     }
 
     //¿Á¿Â¿¸
